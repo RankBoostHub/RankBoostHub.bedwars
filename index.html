@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RankBoostHub | Advanced Rank Boosting</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #111;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s ease-in-out;
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: #222;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            color: #ff5b77;
+            text-shadow: 0 0 15px #ff5b77, 0 0 30px #ff5b77;
+            font-weight: bold;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .header h2 {
+            font-size: 2.5rem;
+            color: #ffbb00;
+            margin-top: 20px;
+            animation: fadeInUp 1.3s ease-out;
+        }
+
+        .cta-buttons {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-buttons a {
+            text-decoration: none;
+            padding: 18px 40px;
+            background: linear-gradient(90deg, #ff512f, #dd2476);
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .cta-buttons a:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #dd2476, #ff512f);
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: #111;
+            padding: 15px 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #ff5b77;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+
+        .feature-details {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .feature-details h3 {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .feature-details p {
+            margin-bottom: 10px;
+        }
+
+        .rank-upgrades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .rank-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .rank-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .rank-item h4 {
+            font-size: 1.5rem;
+            color: #ff5b77;
+        }
+
+        .why-choose-us {
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
+
+        .why-choose-us ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .why-choose-us li {
+            margin-bottom: 10px;
+        }
+
+        .why-choose-us li::before {
+            content: "✔️";
+            margin-right: 10px;
+        }
+
+        /* Footer Section */
+        .footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ff512f;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsiveness */
+        @media screen and (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+
+            .header h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons a {
+                font-size: 1.2rem;
+            }
+
+            .feature-details p, .why-choose-us li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#purchase">Purchase</a></li>
+            <li><a href="https://discord.gg/mPfc2na8xc" target="_blank">Discord</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header" id="home">
+        <h1>RankBoostHub Services</h1>
+        <h2>🏆 RANK BOOSTING SERVICES 🏆</h2>
+        <p>✨ TAKE ADVANTAGE OF OUR 5-WEEK PROMOTION! ✨</p>
+        <p class="countdown" id="countdown">📅 Promotion Ends: February 16, 2025</p>
+        <p class="countdown">💰 *Regular Pricing Resumes After Promotion.</p>
+        <div class="cta-buttons">
+            <a href="#claim-now">Claim Your Rank Now</a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="section" id="features">
+        <h2>RankBoostHub Services</h2>
+        <p>Explore the various rank boosting features we offer to enhance your gaming experience.</p>
+        
+        <div class="feature-details">
+            <h3>RankBoostHub Services</h3>
+            <p><strong>🏆 RANK BOOSTING SERVICES 🏆</strong></p>
+            <p><em>✨ TAKE ADVANTAGE OF OUR 5-WEEK PROMOTION! ✨</em></p>
+            <p><strong>📅 Promotion Ends: February 16, 2025</strong></p>
+            <p><strong>💰 <em>Regular Pricing Resumes After Promotion.</em></strong></p>
+
+            <div class="rank-upgrades">
+                <div class="rank-item">
+                    <h4>🏅 Gold Rank Upgrade</h4>
+                    <p><strong>FREE FOR 5 WEEKS!</strong></p>
+                    <p><em>⏳ Completion Time: 1-2 Days</em></p>
+                    <p>🌟 Dominate the competition with Gold rank!</p>
+                    <p><em>After Promotion: 💰 250 Robux</em></p>
+                </div>
+                <div class="rank-item">
+                    <h4>💎 Platinum Rank Upgrade</h4>
+                    <p><strong>FREE FOR 5 WEEKS!</strong></p>
+                    <p><em>⏳ Completion Time: 3-5 Days</em></p>
+                    <p>🌟 Shine bright with Platinum rank!</p>
+                    <p><em>After Promotion: 💰 800 Robux</em></p>
+                </div>
+                <div class="rank-item">
+                    <h4>✨ Diamond Rank Upgrade</h4>
+                    <p><strong>FREE FOR 5 WEEKS!</strong></p>
+                    <p><em>⏳ Completion Time: 5-7 Days</em></p>
+                    <p>🌟 Reach unparalleled prestige with Diamond rank!</p>
+                    <p><em>After Promotion: 💰 1600 Robux</em></p>
+                </div>
+                <div class="rank-item">
+                    <h4>💚 Emerald Rank Upgrade</h4>
+                    <p><strong>FREE FOR 5 WEEKS!</strong></p>
+                    <p><em>⏳ Completion Time: 7-10 Days</em></p>
+                    <p><em>Nightmare rank excluded—contact us for custom solutions!</em></p>
+                    <p><em>After Promotion: 💰 3000 Robux</em></p>
+                </div>
+            </div>
+            
+            <div class="why-choose-us">
+                <h4>🔑 Why Choose Us?</h4>
+                <ul>
+                    <li>✅ Safe & Secure: Your account is protected with the most advanced measures.</li>
+                    <li>✅ Lightning-Fast Delivery: Results delivered on time, every time.</li>
+                    <li>✅ Custom Solutions: Tailored boosts for unique needs.</li>
+                    <li>✅ Unmatched Support: 24/7 VIP assistance for your peace of mind.</li>
+                </ul>
+            </div>
+
+            <p><strong>🕒 Act Now Before It’s Too Late!</strong></p>
+            <p><strong>⏳ This exclusive offer ends in just 5 weeks.</strong></p>
+            <p><strong>🚀 Upgrade your rank now and secure your spot.</strong></p>
+            <p><strong>🎯 The Best Boosting Services | Offer Ends February 16, 2025</strong></p>
+        </div>
+    </div>
+
+    <!-- Claim Your Rank Section -->
+    <div class="section" id="claim-now">
+        <h2>Claim Your Rank Now</h2>
+        <p>Select one of the ranks below and get started with your free 5-week promotion!</p>
+
+        <div class="rank-upgrades">
+            <div class="rank-item">
+                <h4>🏅 Gold Rank</h4>
+                <a href="https://discord.gg/mPfc2na8xc" target="_blank">Claim Gold Rank</a>
+            </div>
+            <div class="rank-item">
+                <h4>💎 Platinum Rank</h4>
+                <a href="https://discord.gg/mPfc2na8xc" target="_blank">Claim Platinum Rank</a>
+            </div>
+            <div class="rank-item">
+                <h4>✨ Diamond Rank</h4>
+                <a href="https://discord.gg/mPfc2na8xc" target="_blank">Claim Diamond Rank</a>
+            </div>
+            <div class="rank-item">
+                <h4>💚 Emerald Rank</h4>
+                <a href="https://discord.gg/mPfc2na8xc" target="_blank">Claim Emerald Rank</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Brought to you by RankBoostHub Team</p>
+    </div>
+
+    <script>
+        // Countdown timer
+        const countdownElement = document.getElementById('countdown');
+        const endDate = new Date('February 16, 2025').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = endDate - now;
+
+            if (timeLeft <= 0) {
+                countdownElement.innerHTML = "Offer Ended!";
+                clearInterval(timer);
+            } else {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                countdownElement.innerHTML = `🕒 Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        const timer = setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+</html>
